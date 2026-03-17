@@ -143,7 +143,7 @@ export default function IDCardPage() {
 
   const generateA4PDF = async () => {
     if (!idCardRef.current) return;
-
+    setIsGeneratingPDF(true);
     try {
       // Capture the hidden container
       const canvas = await html2canvas(idCardRef.current, {
@@ -176,6 +176,7 @@ export default function IDCardPage() {
     } catch (err) {
       console.error("PDF generation failed:", err);
     }
+    setIsGeneratingPDF(false);
   };
 
   const handleConfirmPayment = async () => {
@@ -915,7 +916,7 @@ export default function IDCardPage() {
                   <Button
                     size="lg"
                     onClick={generateA4PDF}
-                    disabled={isGeneratingPDF}
+                    disabled={isGeneratingPDF || !hasPaid}
                   >
                     <svg
                       className="h-4 w-4"

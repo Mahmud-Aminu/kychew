@@ -5,7 +5,6 @@ import {
     HiOutlineLocationMarker,
     HiOutlineBriefcase,
     HiOutlineCalendar,
-    HiOutlineSearch,
     HiOutlineRefresh,
     HiOutlineExternalLink,
     HiOutlineOfficeBuilding,
@@ -291,7 +290,6 @@ export default function JobsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [search, setSearch] = useState('');
-    const [inputValue, setInputValue] = useState('');
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const [selectedJob, setSelectedJob] = useState<ApiJob | null>(null);
@@ -353,13 +351,9 @@ export default function JobsPage() {
         fetchJobs(page, search);
     }, [page, search, fetchJobs]);
 
-    const handleSearch = () => {
-        setPage(0);
-        setSearch(inputValue);
-    };
+
 
     const handleClear = () => {
-        setInputValue('');
         setSearch('');
         setPage(0);
     };
