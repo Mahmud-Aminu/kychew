@@ -1,45 +1,14 @@
-export interface OPayAmount {
-  currency: string;
-  total: number;
-}
+// Manual Payment types
+// PaymentRecord is defined in models.ts
+// This file is kept for any future payment-specific type extensions
 
-export interface OPayProduct {
-  description: string;
-  name: string;
-}
+export type PaymentStatus = "none" | "pending" | "completed" | "rejected";
 
-export interface OPayUserInfo {
-  userEmail: string;
+export interface PaymentSubmission {
   userId: string;
-  userMobile: string;
-  userName: string;
-}
-
-export interface OPayCheckoutRequest {
-  amount: OPayAmount;
-  callbackUrl: string;
-  cancelUrl: string;
-  country: string;
-  customerVisitSource: 'IOS' | 'ANDROID' | 'WEB';
-  evokeOpay: boolean;
-  expireAt: number;
-  sn: string;
-  payMethod: string;
-  product: OPayProduct;
-  reference: string;
-  returnUrl: string;
-  userInfo: OPayUserInfo;
-}
-
-export interface OPayCheckoutResponse {
-  code: string;
-  message: string;
-  data: {
-    reference: string;
-    orderNo: string;
-    cashierUrl: string;
-    status: string;
-    amount: string;
-    currency: string;
-  };
+  membershipId: string;
+  fullName: string;
+  transactionId: string;
+  paymentDate: string;
+  receiptFile: File;
 }

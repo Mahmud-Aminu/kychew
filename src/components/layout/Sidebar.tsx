@@ -20,16 +20,16 @@ export default function Sidebar() {
 
 
     return (
-        <aside className="hidden w-64 shrink-0 border-r border-surface-200 bg-white lg:block">
+        <aside className="hidden w-64 shrink-0 border-r border-surface-200 bg-white lg:block dark:bg-surface-900 dark:border-surface-800 transition-colors duration-200">
             <div className="flex h-full flex-col">
                 {/* Logo */}
-                <div className="flex h-16 items-center border-b border-surface-200 px-6">
+                <div className="flex h-16 items-center border-b border-surface-200 px-6 dark:border-surface-800">
                     <Link to={ROUTE_PATHS.HOME} className="flex items-center gap-2">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full shadow-lg shadow-primary-500/20">
                             <img src={kychewLogo} alt="KYChew logo" className="h-full w-full object-cover" />
 
                         </div>
-                        <span className="text-lg font-bold text-surface-900">
+                        <span className="text-lg font-bold text-surface-900 dark:text-white">
                             KY<span className="text-accent-600">CHEW</span>
                         </span>
                     </Link>
@@ -48,8 +48,8 @@ export default function Sidebar() {
                   flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium
                   transition-colors duration-150
                   ${isActive
-                                        ? 'bg-primary-50 text-primary-700'
-                                        : 'text-surface-600 hover:bg-surface-50 hover:text-surface-900'
+                                        ? 'bg-primary-50 text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
+                                        : 'text-surface-600 hover:bg-surface-50 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800/50 dark:hover:text-white'
                                     }
                 `}
                             >
@@ -64,8 +64,8 @@ export default function Sidebar() {
                 </nav>
 
                 {/* Bottom section */}
-                <div className="border-t border-surface-200 p-4">
-                    <div className="flex items-center gap-3 rounded-lg bg-accent-50 p-3">
+                <div className="border-t border-surface-200 p-4 dark:border-surface-800">
+                    <div className="flex items-center gap-3 rounded-lg bg-accent-50 p-3 dark:bg-accent-950/20">
                         <Button variant="ghost" size="sm" fullWidth onClick={logout}>
                             <HiOutlineLogout className='h-5 w-5 text-blue-500' aria-hidden= 'true' /> Logout
                         </Button>

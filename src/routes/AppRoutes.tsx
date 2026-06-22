@@ -12,9 +12,14 @@ import DashboardPage from '@/features/dashboard/pages/DashboardPage';
 import JobsPage from '@/pages/Jobs/JobsPage';
 import ProfilePage from '@/pages/Profile/ProfilePage';
 import IDCardPage from '@/pages/IDCard/IDCardPage';
+import IDCardDashboard from '@/features/IDCard/page/IDCardDashboard';
+import IDCardGenerate from '@/features/IDCard/page/IDCardGenerate';
+import IDCardView from '@/features/IDCard/page/IDCardView';
+import IDCardDownload from '@/features/IDCard/page/IDCardDownload';
 import AboutPage from '@/pages/About/AboutPage';
 import ContactPage from '@/pages/Contact/ContactPage';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
+import AdminPaymentsPage from '@/pages/Admin/AdminPaymentsPage';
 import AuthLayout from '@/components/layout/AuthLayout';
 
 function ProtectedRoute() {
@@ -64,8 +69,14 @@ export default function AppRoutes() {
 
                         <Route path={ROUTE_PATHS.DASHBOARD} element={<DashboardPage />} />
                         <Route path={ROUTE_PATHS.PROFILE} element={<ProfilePage />} />
-                        <Route path={ROUTE_PATHS.ID_CARD} element={<IDCardPage />} />
+                        <Route path={ROUTE_PATHS.ID_CARD} element={<IDCardPage />}>
+                            <Route index element={<IDCardDashboard />} />
+                            <Route path="generate" element={<IDCardGenerate />} />
+                            <Route path="view" element={<IDCardView />} />
+                            <Route path="download" element={<IDCardDownload />} />
+                        </Route>
                         <Route path={ROUTE_PATHS.JOBS} element={<JobsPage />} />
+                        <Route path={ROUTE_PATHS.ADMIN_PAYMENTS} element={<AdminPaymentsPage />} />
                     </Route>
                 </Route>
 

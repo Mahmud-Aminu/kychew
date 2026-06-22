@@ -28,7 +28,7 @@ export default function DashboardLayout() {
     ];
 
     return (
-        <div className="flex h-screen overflow-hidden bg-surface-50">
+        <div className="flex h-screen overflow-hidden bg-surface-50 dark:bg-surface-950 text-surface-800 dark:text-surface-100 transition-colors duration-200">
             {/* Desktop sidebar */}
             <Sidebar />
 
@@ -40,19 +40,19 @@ export default function DashboardLayout() {
                         onClick={() => setMobileOpen(false)}
                         aria-hidden="true"
                     />
-                    <aside className="absolute left-0 top-0 h-full w-72 bg-white shadow-xl">
-                        <div className="flex h-16 items-center justify-between border-b border-surface-200 px-6">
+                    <aside className="absolute left-0 top-0 h-full w-72 bg-white dark:bg-surface-900 shadow-xl">
+                        <div className="flex h-16 items-center justify-between border-b border-surface-200 dark:border-surface-800 px-6">
                             <Link to={ROUTE_PATHS.HOME} className="flex items-center gap-2">
                                 <div className="flex h-10 w-10 items-center justify-center rounded-full shadow-lg shadow-primary-500/20">
                                     <img src={kychewLogo} alt="KYChew logo" className="h-full w-full object-cover" />
 
                                 </div>
-                                <span className="text-lg font-bold text-surface-900">
+                                <span className="text-lg font-bold text-surface-900 dark:text-white">
                                     KY<span className="text-accent-600">CHEW</span>
                                 </span>
                             </Link>
                             <button
-                                className="flex h-8 w-8 items-center justify-center rounded-lg text-surface-500 hover:bg-surface-100"
+                                className="flex h-8 w-8 items-center justify-center rounded-lg text-surface-500 hover:bg-surface-100 dark:hover:bg-surface-800"
                                 onClick={() => setMobileOpen(false)}
                                 aria-label="Close sidebar"
                             >
@@ -71,8 +71,8 @@ export default function DashboardLayout() {
                                         to={item.path}
                                         onClick={() => setMobileOpen(false)}
                                         className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive
-                                            ? 'bg-primary-50 text-primary-700'
-                                            : 'text-surface-600 hover:bg-surface-50 hover:text-surface-900'
+                                            ? 'bg-primary-50 text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
+                                            : 'text-surface-600 hover:bg-surface-50 hover:text-surface-900 dark:text-surface-400 dark:hover:bg-surface-800/50 dark:hover:text-white'
                                             }`}
                                     >
                                         <span className="text-lg" aria-hidden="true">
@@ -90,9 +90,9 @@ export default function DashboardLayout() {
             {/* Main content */}
             <div className="flex flex-1 flex-col overflow-hidden">
                 {/* Topbar */}
-                <header className="flex h-16 shrink-0 items-center justify-between border-b border-surface-200 bg-white px-4 sm:px-6">
+                <header className="flex h-16 shrink-0 items-center justify-between border-b border-surface-200 bg-white px-4 sm:px-6 dark:bg-surface-900 dark:border-surface-800 transition-colors duration-200">
                     <button
-                        className="flex h-10 w-10 items-center justify-center rounded-lg text-surface-600 hover:bg-surface-100 lg:hidden"
+                        className="flex h-10 w-10 items-center justify-center rounded-lg text-surface-600 hover:bg-surface-100 lg:hidden dark:text-surface-300 dark:hover:bg-surface-800"
                         onClick={() => setMobileOpen(true)}
                         aria-label="Open sidebar"
                     >
@@ -103,11 +103,11 @@ export default function DashboardLayout() {
                     <div className="flex items-center gap-3 ml-auto">
                         <button
                             onClick={() => setNotificationOpen(!notificationOpen)}
-                            className="relative flex items-center gap-3 rounded-lg bg-accent-50 p-3 hover:bg-accent-100 transition-colors"
+                            className="relative flex items-center gap-3 rounded-lg bg-accent-50 p-3 hover:bg-accent-100 transition-colors dark:bg-accent-950/40 dark:hover:bg-accent-900/60"
                             aria-label="Notifications"
                         >
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-600 text-sm font-bold text-white">
-                                <HiOutlineBell className='h-8 w-8 text-yellow-500' />
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-600 text-sm font-bold text-white dark:bg-accent-800">
+                                <HiOutlineBell className='h-8 w-8 text-yellow-500 dark:text-yellow-400' />
                             </div>
                             {notifications.length > 0 && (
                                 <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
@@ -117,7 +117,7 @@ export default function DashboardLayout() {
                         </button>
 
                         <button
-                            className="flex items-center gap-3 rounded-lg bg-surface-100 p-3 hover:bg-surface-200 transition-colors"
+                            className="flex items-center gap-3 rounded-lg bg-surface-100 p-3 hover:bg-surface-200 transition-colors dark:bg-surface-800 dark:hover:bg-surface-700"
                             onClick={() => navigate(ROUTE_PATHS.PROFILE)}
                             aria-label="User menu"
                         >
@@ -129,12 +129,12 @@ export default function DashboardLayout() {
 
                     {/* Notification modal */}
                     {notificationOpen && (
-                        <div className="absolute right-4 top-16 z-50 w-96 max-w-[calc(100vw-2rem)] rounded-lg border border-surface-200 bg-white shadow-lg">
-                            <div className="border-b border-surface-200 px-4 py-3 flex items-center justify-between">
-                                <h3 className="font-semibold text-surface-900">Notifications</h3>
+                        <div className="absolute right-4 top-16 z-50 w-96 max-w-[calc(100vw-2rem)] rounded-lg border border-surface-200 bg-white shadow-lg dark:bg-surface-900 dark:border-surface-800">
+                            <div className="border-b border-surface-200 dark:border-surface-800 px-4 py-3 flex items-center justify-between">
+                                <h3 className="font-semibold text-surface-900 dark:text-white">Notifications</h3>
                                 <button
                                     onClick={() => setNotificationOpen(false)}
-                                    className="text-surface-400 hover:text-surface-600"
+                                    className="text-surface-400 hover:text-surface-600 dark:text-surface-500 dark:hover:text-surface-300"
                                     aria-label="Close notifications"
                                 >
                                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -147,15 +147,15 @@ export default function DashboardLayout() {
                                     notifications.map((notification) => (
                                         <div
                                             key={notification.id}
-                                            className={`border-b border-surface-100 px-4 py-3 hover:bg-surface-50 transition-colors ${!notification.read ? 'bg-accent-50' : ''
+                                            className={`border-b border-surface-100 dark:border-surface-800 px-4 py-3 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-colors ${!notification.read ? 'bg-accent-50 dark:bg-accent-950/20' : ''
                                                 }`}
                                         >
                                             <div className="flex items-start justify-between gap-3">
                                                 <div className="flex-1">
-                                                    <p className={`text-sm ${!notification.read ? 'font-semibold text-surface-900' : 'text-surface-700'}`}>
+                                                    <p className={`text-sm ${!notification.read ? 'font-semibold text-surface-900 dark:text-white' : 'text-surface-700 dark:text-surface-300'}`}>
                                                         {notification.message}
                                                     </p>
-                                                    <p className="text-xs text-surface-500 mt-1">{notification.time}</p>
+                                                    <p className="text-xs text-surface-500 dark:text-surface-400 mt-1">{notification.time}</p>
                                                 </div>
                                                 {!notification.read && (
                                                     <div className="h-2 w-2 rounded-full bg-accent-600 flex-shrink-0 mt-1" />
@@ -169,8 +169,8 @@ export default function DashboardLayout() {
                                     </div>
                                 )}
                             </div>
-                            <div className="border-t border-surface-200 px-4 py-3">
-                                <button className="w-full text-center text-sm font-medium text-primary-600 hover:text-primary-700">
+                            <div className="border-t border-surface-200 dark:border-surface-800 px-4 py-3">
+                                <button className="w-full text-center text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
                                     View all notifications
                                 </button>
                             </div>
@@ -179,7 +179,7 @@ export default function DashboardLayout() {
                 </header>
 
                 {/* Page content */}
-                <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-4">
+                <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-6">
                     <Outlet />
                 </main>
             </div>

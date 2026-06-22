@@ -102,4 +102,22 @@ export interface UserProfile {
   experiences: Experience[];
   cvFileName: string | null;
   membershipId: string;
+  payment_status?: "none" | "pending" | "completed";
+  signatureUrl?: string;
+}
+
+export interface PaymentRecord {
+  id?: string;
+  userId: string;
+  membershipId: string;
+  fullName: string;
+  transactionId: string;
+  amount: number;
+  paymentDate: string;
+  receiptUrl: string;
+  payment_status: "pending" | "completed" | "rejected";
+  submittedAt: string;
+  verifiedAt: string | null;
+  verifiedBy: string | null;
+  rejectionReason: string | null;
 }

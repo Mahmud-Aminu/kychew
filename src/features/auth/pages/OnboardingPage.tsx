@@ -22,6 +22,8 @@ interface StepTwoData {
   licenseNumber: string;
   institutionType: InstitutionType;
   level: string;
+  placeOfWork: string;
+  currentSchool: string;
 }
 
 interface FormErrors {
@@ -32,6 +34,8 @@ interface FormErrors {
   licenseNumber?: string;
   institutionType?: string;
   level?: string;
+  placeOfWork?: string;
+  currentSchool?: string;
 }
 
 const STEPS = ["Basic Information", "Professional Verification"];
@@ -92,6 +96,7 @@ const LEVEL_OPTIONS: Record<string, { value: string; label: string }[]> = {
     { value: "level_1", label: "Level 1" },
     { value: "level_2", label: "Level 2" },
     { value: "level_3", label: "Level 3" },
+    { value: "level_4", label: "Level 4" },
   ],
 };
 
@@ -116,6 +121,8 @@ function validateStepTwo(data: StepTwoData, userType: UserType): FormErrors {
     if (!data.institutionType)
       errors.institutionType = "Please select institution type";
     if (!data.level) errors.level = "Please select your level";
+    if (!data.currentSchool)
+      errors.currentSchool = "Please enter or choose your current school";
   }
   return errors;
 }
@@ -138,6 +145,8 @@ export default function OnboardingPage() {
     licenseNumber: "",
     institutionType: "",
     level: "",
+    placeOfWork: "",
+    currentSchool: "",
   });
 
   const handleStepOneChange = (field: keyof StepOneData, value: string) => {
@@ -152,6 +161,7 @@ export default function OnboardingPage() {
       const updated = { ...prev, [field]: value };
       if (field === "institutionType") {
         updated.level = "";
+        updated.currentSchool = "";
       }
       return updated;
     });
@@ -414,6 +424,15 @@ export default function OnboardingPage() {
                       error={errors.licenseNumber}
                       required
                     />
+                    <Input
+                      label="Place of Work"
+                      placeholder="e.g. ABC Clinic or General Hospital"
+                      value={stepTwo.placeOfWork}
+                      onChange={(e) =>
+                        handleStepTwoChange("placeOfWork", e.target.value)
+                      }
+                      error={errors.placeOfWork}
+                    />
                   </>
                 )}
 
@@ -458,6 +477,18 @@ export default function OnboardingPage() {
                         }
                         error={errors.level}
                         placeholder="Select your level"
+                        required
+                      />
+                    )}
+                    {stepTwo.institutionType && (
+                      <Input
+                        label="Current School"
+                        placeholder="e.g. State School of Nursing"
+                        value={stepTwo.currentSchool}
+                        onChange={(e) =>
+                          handleStepTwoChange("currentSchool", e.target.value)
+                        }
+                        error={errors.currentSchool}
                         required
                       />
                     )}
